@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+ActionBar {
+  background-color: #FAE8EB;
+  color: #3f3f3f;
+}
+
+:root {
+  line-height: 0;
+}
+
+.text-base, .text-sm, .text-lg, .text-xl, .text-2xl, .text-3xl {
+  line-height: 0;
+}
