@@ -65,7 +65,7 @@ class MaskedSquircleView extends UIView {
   private makeExponentPath(w: number, h: number, n: number): UIBezierPath {
     const path = UIBezierPath.bezierPath();
 
-    const points = superellipsePoints(w, h, n, 256);
+    const points = superellipsePoints(w, h, n, 50);
 
     points.forEach((point, i) => {
       if (i === 0) path.moveToPoint(CGPointMake(point.x, point.y));
@@ -102,7 +102,9 @@ class MaskedSquircleView extends UIView {
 
       const n = Math.max(0.01, this.exponent);
 
-      const maskPath = this.makeExponentPath(w, h, n);
+      const expansion = 3;
+      const maskPath = this.makeExponentPath(w + expansion, h + expansion, n);
+      maskPath.applyTransform(CGAffineTransformMakeTranslation(-expansion/2, -expansion/2));
 
       let borderPath: UIBezierPath;
       if (this.borderWidth > 0) {
@@ -110,7 +112,7 @@ class MaskedSquircleView extends UIView {
         borderPath = this.makeExponentPath(w - inset * 2, h - inset * 2, n);
         borderPath.applyTransform(CGAffineTransformMakeTranslation(inset, inset));
       } else {
-        borderPath = maskPath;
+        borderPath = this.makeExponentPath(w, h, n);
       }
 
       CATransaction.begin();

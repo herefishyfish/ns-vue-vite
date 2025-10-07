@@ -7,7 +7,7 @@
       </Label>
       
       <GridLayout class="mt-5" columns="*, *" rows="*, *">
-        <SquircleContentView ref="featureCard1" class="info-card p-10 m-2.5 text-center" row="0" col="0" squircleBorderWidth="2" squircleBorderColor="#41d1ff">
+        <SquircleContentView ref="featureCard1" class="info-card p-10 m-2.5 text-center" row="0" col="0" squircleBorderWidth="2" squircleBorderColor="#ffffff33">
           <StackLayout class="text-center m-8">
             <Label class="text-3xl text-center mb-2.5">🔥</Label>
             <Label class="text-base font-bold text-white text-center mb-2" textWrap="true">Instant HMR</Label>
@@ -15,7 +15,7 @@
           </StackLayout>
         </SquircleContentView>
         
-        <SquircleContentView ref="featureCard2" class="info-card p-10 m-2.5 text-center" row="0" col="1" squircleBorderWidth="2" squircleBorderColor="#bd34fe">
+        <SquircleContentView ref="featureCard2" class="info-card p-10 m-2.5 text-center" row="0" col="1" squircleBorderWidth="2" squircleBorderColor="#ffffff33">
           <StackLayout class="text-center m-8">
             <Label class="text-3xl text-center mb-2.5">📱</Label>
             <Label class="text-base font-bold text-white text-center mb-2" textWrap="true">Native Performance</Label>
@@ -23,7 +23,7 @@
           </StackLayout>
         </SquircleContentView>
 
-        <SquircleContentView ref="featureCard3" class="info-card p-10 m-2.5 text-center" row="1" col="0" squircleBorderWidth="2" squircleBorderColor="#10b981">
+        <SquircleContentView ref="featureCard3" class="info-card p-10 m-2.5 text-center" row="1" col="0" squircleBorderWidth="2" squircleBorderColor="#ffffff33">
           <StackLayout class="text-center m-8">
             <Label class="text-3xl text-center mb-2.5">🚀</Label>
             <Label class="text-base font-bold text-white text-center mb-2" textWrap="true">Dev Experience</Label>
@@ -31,7 +31,7 @@
           </StackLayout>
         </SquircleContentView>
 
-        <SquircleContentView ref="featureCard4" class="info-card p-10 m-2.5 text-center" row="1" col="1" squircleBorderWidth="2" squircleBorderColor="#f59e0b">
+        <SquircleContentView ref="featureCard4" class="info-card p-10 m-2.5 text-center" row="1" col="1" squircleBorderWidth="2" squircleBorderColor="#ffffff33">
           <StackLayout class="text-center m-8">
             <Label class="text-3xl text-center mb-2.5">⚡</Label>
             <Label class="text-base font-bold text-white text-center mb-2" textWrap="true">Lightning Start</Label>
