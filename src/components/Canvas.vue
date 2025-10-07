@@ -11,7 +11,6 @@ let canvas: Canvas;
 let animationId: number;
 let currentTime = 0;
 
-// Create a 2D plane for gradient background in 3D space
 let gradientPlane: THREE.Mesh;
 let gradientMaterial: THREE.ShaderMaterial;
 
@@ -80,7 +79,7 @@ const createGradientShader = () => {
       radialPos1: { value: new THREE.Vector2(0.2, 0.5) },
       radialPos2: { value: new THREE.Vector2(0.8, 0.5) },
       time: { value: 0 },
-      pulseIntensity: { value: 0.6 }, // Increased default intensity
+      pulseIntensity: { value: 0.6 },
     },
   });
 };
@@ -126,7 +125,7 @@ const createGlowShader = () => {
     fragmentShader,
     uniforms: {
       glowColor: { value: new THREE.Color(0x4dd0e1) },
-      glowIntensity: { value: 0.4 }, // Increased intensity for better visibility with tighter glow
+      glowIntensity: { value: 0.4 },
     },
     transparent: true,
     blending: THREE.AdditiveBlending,
@@ -177,19 +176,18 @@ const createLogoGradientShader = (color1: number, color2: number) => {
       color1: { value: new THREE.Color(color1) },
       color2: { value: new THREE.Color(color2) },
       time: { value: 1 },
-      gradientDirection: { value: 0.7 }, // More vertical for better blue-to-purple visibility
+      gradientDirection: { value: 0.7 },
     },
   });
 };
 
-// 3D Scene variables
 const scene = new THREE.Scene();
 let camera: THREE.PerspectiveCamera;
 let renderer: THREE.WebGLRenderer;
 let viteLogo: THREE.Mesh;
-let logoGlow: THREE.Mesh; // Radial gradient glow behind the logo
-let logoGradientMaterial: THREE.ShaderMaterial; // Gradient material for the logo
-let logoGradientMaterial2: THREE.ShaderMaterial; // Second gradient material for the logo
+let logoGlow: THREE.Mesh; 
+let logoGradientMaterial: THREE.ShaderMaterial;
+let logoGradientMaterial2: THREE.ShaderMaterial;
 
 const props = defineProps({
   progress: {
@@ -208,69 +206,81 @@ watch(
 // Combined states for both 3D model and gradient background
 const states = [
   {
-    // 3D Model state
+    rotation: { x: 0.8, y: -(Math.PI * 2) - 1, z: -0.2 },
+    scale: 4,
+    position: { x: -0.5, y: 2, z: 0.5 },
+    baseColor1: "#0f0f23",
+    baseColor2: "#1a1a2e",
+    accentColor1: "rgba(41, 128, 185, 0.8)",
+    accentColor2: "rgba(142, 68, 173, 0.6)",
+    pulseIntensity: 0.05,
+    radialPositions: { r1: { x: 0.1, y: 0.1 }, r2: { x: 0.9, y: 0.9 } },
+  },
+  {
     rotation: { x: 0.4, y: -(Math.PI * 2), z: 0 },
     scale: 6.5,
     position: { x: 0, y: 1.25, z: 0 },
-    // Gradient state
     baseColor1: "#1a1a2e",
     baseColor2: "#16213e",
     accentColor1: "rgba(65, 209, 255, 1)",
     accentColor2: "rgba(189, 52, 254, 1)",
-    pulseIntensity: 0.15, // Increased from 0.05
-    radialPositions: { r1: { x: 0.25, y: 0.3 }, r2: { x: 0.75, y: 0.7 } }, // Better positioning
+    pulseIntensity: 0.15,
+    radialPositions: { r1: { x: 0.25, y: 0.3 }, r2: { x: 0.75, y: 0.7 } },
   },
   {
-    // 3D Model state
     rotation: { x: 0, y: 1, z: 0 },
     scale: 12,
     position: { x: -0.2, y: 0, z: 0 },
-    // Gradient state
     baseColor1: "#1a1a2e",
     baseColor2: "#16213e",
     accentColor1: "rgba(65, 209, 255, 1)",
     accentColor2: "rgba(189, 52, 254, 1)",
-    pulseIntensity: 0.1, // Increased from 0.01
-    radialPositions: { r1: { x: 0.15, y: 0.2 }, r2: { x: 0.85, y: 0.8 } }, // More spread out
+    pulseIntensity: 0.1,
+    radialPositions: { r1: { x: 0.15, y: 0.2 }, r2: { x: 0.85, y: 0.8 } },
   },
   {
-    // 3D Model state
     rotation: { x: 0, y: -1, z: 0.4 },
     scale: 5,
     position: { x: 0.2, y: 0.1, z: 0 },
-    // Gradient state
     baseColor1: "#667eea",
     baseColor2: "#764ba2",
     accentColor1: "rgba(255, 255, 255, 0.1)",
     accentColor2: "rgba(255, 255, 255, 0.1)",
-    pulseIntensity: 0.25, // Increased from 0.14
-    radialPositions: { r1: { x: 0.3, y: 0.15 }, r2: { x: 0.7, y: 0.85 } }, // Better diagonal positioning
+    pulseIntensity: 0.25,
+    radialPositions: { r1: { x: 0.3, y: 0.15 }, r2: { x: 0.7, y: 0.85 } },
   },
   {
-    // 3D Model state
     rotation: { x: 0, y: -Math.PI * 2, z: 0 },
     scale: 10,
     position: { x: 0, y: 0, z: 0 },
-    // Gradient state
     baseColor1: "#1e3c72",
     baseColor2: "#2a5298",
     accentColor1: "rgba(65, 209, 255, 0.2)",
     accentColor2: "rgba(189, 52, 254, 0.12)",
-    pulseIntensity: 0.4, // Increased from 0.3
-    radialPositions: { r1: { x: 0.35, y: 0.65 }, r2: { x: 0.65, y: 0.35 } }, // More centered cross pattern
+    pulseIntensity: 0.4,
+    radialPositions: { r1: { x: 0.35, y: 0.65 }, r2: { x: 0.65, y: 0.35 } },
   },
   {
-    // 3D Model state
     rotation: { x: Math.PI * 2 + 0.4, y: 0, z: 0 },
     scale: 8,
     position: { x: 0, y: 1.2, z: 0 },
-    // Gradient state
     baseColor1: "#434343",
     baseColor2: "#000000",
     accentColor1: "rgba(128, 128, 128, 0.2)",
     accentColor2: "rgba(188, 188, 188, 0.05)",
-    pulseIntensity: 0.5, // Increased from 0.3
-    radialPositions: { r1: { x: 0.3, y: 0.7 }, r2: { x: 0.7, y: 0.3 } }, // Better contrast positioning
+    pulseIntensity: 0.5,
+    radialPositions: { r1: { x: 0.3, y: 0.7 }, r2: { x: 0.7, y: 0.3 } },
+  },
+  {
+    rotation: { x: Math.PI * 2 + 0.8, y: 1, z: 0.3 },
+    scale: 12,
+    position: { x: 0.5, y: 0.5, z: -0.5 },
+    baseColor1: "#2c1810",
+    baseColor2: "#1a1a1a",
+    accentColor1: "rgba(255, 165, 0, 0.4)",
+    accentColor2: "rgba(255, 69, 0, 0.3)",
+    pulseIntensity: 0.7,
+    radialPositions: { r1: { x: 0.8, y: 0.2 }, r2: { x: 0.2, y: 0.8 } },
   },
 ];
 
@@ -279,22 +289,26 @@ let currentState = states[0];
 // Utility functions for color interpolation
 const hexToRgb = (hex: string): { r: number; g: number; b: number } => {
   const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-  return result ? {
-    r: parseInt(result[1], 16),
-    g: parseInt(result[2], 16),
-    b: parseInt(result[3], 16)
-  } : { r: 0, g: 0, b: 0 };
+  return result
+    ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16),
+      }
+    : { r: 0, g: 0, b: 0 };
 };
 
-const parseRgbaColor = (rgba: string): { r: number; g: number; b: number; a: number } => {
+const parseRgbaColor = (
+  rgba: string
+): { r: number; g: number; b: number; a: number } => {
   const match = rgba.match(/rgba?\(([^)]+)\)/);
   if (match) {
-    const values = match[1].split(',').map(v => parseFloat(v.trim()));
+    const values = match[1].split(",").map((v) => parseFloat(v.trim()));
     return {
       r: values[0] || 0,
       g: values[1] || 0,
       b: values[2] || 0,
-      a: values[3] !== undefined ? values[3] : 1
+      a: values[3] !== undefined ? values[3] : 1,
     };
   }
   return { r: 0, g: 0, b: 0, a: 1 };
@@ -315,42 +329,47 @@ const lerp = (start: number, end: number, factor: number): number => {
 const lerpColor = (color1: string, color2: string, factor: number): string => {
   const rgb1 = hexToRgb(color1);
   const rgb2 = hexToRgb(color2);
-  
+
   const r = Math.round(lerp(rgb1.r, rgb2.r, factor));
   const g = Math.round(lerp(rgb1.g, rgb2.g, factor));
   const b = Math.round(lerp(rgb1.b, rgb2.b, factor));
-  
+
   return rgbToHex(r, g, b);
 };
 
-const lerpRgbaColor = (color1: string, color2: string, factor: number): string => {
+const lerpRgbaColor = (
+  color1: string,
+  color2: string,
+  factor: number
+): string => {
   const rgba1 = parseRgbaColor(color1);
   const rgba2 = parseRgbaColor(color2);
-  
+
   const r = lerp(rgba1.r, rgba2.r, factor);
   const g = lerp(rgba1.g, rgba2.g, factor);
   const b = lerp(rgba1.b, rgba2.b, factor);
   const a = lerp(rgba1.a, rgba2.a, factor);
-  
+
   return `rgba(${Math.round(r)}, ${Math.round(g)}, ${Math.round(b)}, ${a})`;
 };
 
 const interpolateStates = (progress: number) => {
-  if (progress < 0 || progress > states.length - 1) {
-    return;
-  }
+  const adjustedProgress = progress + 1;
+  const clampedProgress = Math.max(
+    0,
+    Math.min(states.length - 1, adjustedProgress)
+  );
 
-  const stateIndex = Math.floor(progress);
-  const nextStateIndex = stateIndex + 1 < states.length ? stateIndex + 1 : stateIndex;
-  const lerpFactor = progress - stateIndex;
+  const stateIndex = Math.floor(clampedProgress);
+  const nextStateIndex =
+    stateIndex + 1 < states.length ? stateIndex + 1 : stateIndex;
+  const lerpFactor = clampedProgress - stateIndex;
 
   const state1 = states[stateIndex];
   const state2 = states[nextStateIndex];
 
-  // Add slow vertical animation
-  const verticalOffset = Math.sin(currentTime * 0.001) * 0.1; // Slow up/down movement
+  const verticalOffset = Math.sin(currentTime * 0.001) * 0.1;
 
-  // Interpolate 3D model state
   if (viteLogo) {
     viteLogo.rotation.x = THREE.MathUtils.lerp(
       state1.rotation.x,
@@ -395,7 +414,7 @@ const interpolateStates = (progress: number) => {
       state2.position.x,
       lerpFactor
     );
-    viteLogo.position.y = baseY + verticalOffset; // Add vertical animation
+    viteLogo.position.y = baseY + verticalOffset;
     viteLogo.position.z = THREE.MathUtils.lerp(
       state1.position.z,
       state2.position.z,
@@ -403,38 +422,61 @@ const interpolateStates = (progress: number) => {
     );
   }
 
-  // Update glow effect to match logo position
   if (logoGlow && viteLogo) {
-    // Position the glow very close behind the logo for tight adherence
     logoGlow.position.copy(viteLogo.position);
-    logoGlow.position.z -= 0.2; // Much closer to the logo for tighter effect
-    
-    // Make the glow scale much closer to the actual logo size
-    const glowScale = viteLogo.scale.x * 0.95; // Very close to logo size for tight glow
+    logoGlow.position.z -= 0.2;
+
+    const glowScale = viteLogo.scale.x * 0.95;
     logoGlow.scale.set(glowScale, glowScale, 1);
-    
-    // Keep glow facing the camera (no rotation)
+
     logoGlow.lookAt(camera.position);
   }
 
-  // Interpolate gradient state
   currentState = {
-    rotation: state1.rotation, // Keep for reference
-    scale: state1.scale, // Keep for reference
-    position: state1.position, // Keep for reference
+    rotation: state1.rotation,
+    scale: state1.scale,
+    position: state1.position,
     baseColor1: lerpColor(state1.baseColor1, state2.baseColor1, lerpFactor),
     baseColor2: lerpColor(state1.baseColor2, state2.baseColor2, lerpFactor),
-    accentColor1: lerpRgbaColor(state1.accentColor1, state2.accentColor1, lerpFactor),
-    accentColor2: lerpRgbaColor(state1.accentColor2, state2.accentColor2, lerpFactor),
-    pulseIntensity: lerp(state1.pulseIntensity, state2.pulseIntensity, lerpFactor),
+    accentColor1: lerpRgbaColor(
+      state1.accentColor1,
+      state2.accentColor1,
+      lerpFactor
+    ),
+    accentColor2: lerpRgbaColor(
+      state1.accentColor2,
+      state2.accentColor2,
+      lerpFactor
+    ),
+    pulseIntensity: lerp(
+      state1.pulseIntensity,
+      state2.pulseIntensity,
+      lerpFactor
+    ),
     radialPositions: {
       r1: {
-        x: lerp(state1.radialPositions.r1.x, state2.radialPositions.r1.x, lerpFactor),
-        y: lerp(state1.radialPositions.r1.y, state2.radialPositions.r1.y, lerpFactor),
+        x: lerp(
+          state1.radialPositions.r1.x,
+          state2.radialPositions.r1.x,
+          lerpFactor
+        ),
+        y: lerp(
+          state1.radialPositions.r1.y,
+          state2.radialPositions.r1.y,
+          lerpFactor
+        ),
       },
       r2: {
-        x: lerp(state1.radialPositions.r2.x, state2.radialPositions.r2.x, lerpFactor),
-        y: lerp(state1.radialPositions.r2.y, state2.radialPositions.r2.y, lerpFactor),
+        x: lerp(
+          state1.radialPositions.r2.x,
+          state2.radialPositions.r2.x,
+          lerpFactor
+        ),
+        y: lerp(
+          state1.radialPositions.r2.y,
+          state2.radialPositions.r2.y,
+          lerpFactor
+        ),
       },
     },
   };
@@ -443,17 +485,23 @@ const interpolateStates = (progress: number) => {
 const updateGradientUniforms = () => {
   if (!gradientMaterial) return;
 
-  // Update shader uniforms based on current state
-  gradientMaterial.uniforms.color1.value.setHex(parseInt(currentState.baseColor1.replace('#', '0x')));
-  gradientMaterial.uniforms.color2.value.setHex(parseInt(currentState.baseColor2.replace('#', '0x')));
-  
-  // Parse rgba colors for accent colors
+  gradientMaterial.uniforms.color1.value.setHex(
+    parseInt(currentState.baseColor1.replace("#", "0x"))
+  );
+  gradientMaterial.uniforms.color2.value.setHex(
+    parseInt(currentState.baseColor2.replace("#", "0x"))
+  );
+
   const accentColor1 = parseRgbaColor(currentState.accentColor1);
   const accentColor2 = parseRgbaColor(currentState.accentColor2);
-  
-  gradientMaterial.uniforms.accentColor1.value.setHex(rgbaToHex(accentColor1.r, accentColor1.g, accentColor1.b));
-  gradientMaterial.uniforms.accentColor2.value.setHex(rgbaToHex(accentColor2.r, accentColor2.g, accentColor2.b));
-  
+
+  gradientMaterial.uniforms.accentColor1.value.setHex(
+    rgbaToHex(accentColor1.r, accentColor1.g, accentColor1.b)
+  );
+  gradientMaterial.uniforms.accentColor2.value.setHex(
+    rgbaToHex(accentColor2.r, accentColor2.g, accentColor2.b)
+  );
+
   gradientMaterial.uniforms.radialPos1.value.set(
     currentState.radialPositions.r1.x,
     currentState.radialPositions.r1.y
@@ -465,7 +513,6 @@ const updateGradientUniforms = () => {
   gradientMaterial.uniforms.time.value = currentTime;
   gradientMaterial.uniforms.pulseIntensity.value = currentState.pulseIntensity;
 
-  // Update logo gradient material time
   if (logoGradientMaterial) {
     logoGradientMaterial.uniforms.time.value = currentTime;
   }
@@ -475,19 +522,16 @@ const updateGradientUniforms = () => {
 };
 
 const animate = () => {
-  currentTime += 16; // Approximately 60fps
-  
-  // Continuously update animations (for the floating and pulsing effects)
+  currentTime = performance.now();
+
   interpolateStates(props.progress);
-  
-  // Update gradient shader uniforms
+
   updateGradientUniforms();
-  
-  // Render 3D scene (includes gradient background plane and 3D model)
+
   if (renderer && scene && camera) {
     renderer.render(scene, camera);
   }
-  
+
   animationId = requestAnimationFrame(animate);
 };
 
@@ -497,7 +541,6 @@ const onReady = (args: LoadEventData) => {
   canvas.width = canvas.clientWidth * Screen.mainScreen.scale;
   canvas.height = canvas.clientHeight * Screen.mainScreen.scale;
 
-  // Setup WebGL context for 3D
   const webglCtx = canvas.getContext("webgl2");
   canvas.ignoreTouchEvents = true;
 
@@ -506,52 +549,55 @@ const onReady = (args: LoadEventData) => {
     return;
   }
 
-  // Setup 3D renderer
   renderer = new THREE.WebGLRenderer({
     context: webglCtx as any, // Type assertion for NativeScript
     antialias: true,
   });
 
-  camera = new THREE.PerspectiveCamera(45, canvas.width / canvas.height, 0.1, 1000);
+  camera = new THREE.PerspectiveCamera(
+    45,
+    canvas.width / canvas.height,
+    0.1,
+    1000
+  );
   camera.position.z = 5;
 
-  // Create gradient background plane
   gradientMaterial = createGradientShader();
   const planeGeometry = new THREE.PlaneGeometry(20, 20);
   gradientPlane = new THREE.Mesh(planeGeometry, gradientMaterial);
-  gradientPlane.position.z = -10; // Place behind the 3D model
+  gradientPlane.position.z = -10;
   scene.add(gradientPlane);
 
-  // Add lighting for 3D model
   const dirLight = new THREE.DirectionalLight(0xffffff, 0.8);
   dirLight.position.set(30, 60, 30);
   scene.add(dirLight);
   const ambLight = new THREE.AmbientLight(0xffffff, 0.4);
   scene.add(ambLight);
 
-  // Create radial gradient glow plane
   const glowMaterial = createGlowShader();
   const glowGeometry = new THREE.PlaneGeometry(4, 4);
   logoGlow = new THREE.Mesh(glowGeometry, glowMaterial);
   scene.add(logoGlow);
 
-  // Create gradient materials for the logo - matching SVG gradients exactly
   logoGradientMaterial = createLogoGradientShader(0xbd34fe, 0x41d1ff); // Blue to purple (SVG gradient #a)
   logoGradientMaterial2 = createLogoGradientShader(0xffdd35, 0xffa800); // Yellow to orange (SVG gradient #b)
 
-  // Load 3D model
   const loader = new GLTFLoader();
   loader.load("~/assets/vite.glb", (gltf: any) => {
     viteLogo = gltf.scene;
-    
-    // Apply different gradient materials to different parts of the logo
+
     let meshIndex = 0;
     viteLogo.traverse((child: any) => {
       if (child.isMesh) {
-        console.log("Mesh found:", child.name, "Material:", child.material?.name, "Index:", meshIndex);
-        
-        // Apply different gradients based on mesh index or name
-        // First mesh gets blue-purple gradient, second gets yellow-orange
+        console.log(
+          "Mesh found:",
+          child.name,
+          "Material:",
+          child.material?.name,
+          "Index:",
+          meshIndex
+        );
+
         if (meshIndex % 2 === 0) {
           child.material = logoGradientMaterial.clone();
           console.log("Applied blue-purple gradient to mesh", meshIndex);
@@ -559,23 +605,20 @@ const onReady = (args: LoadEventData) => {
           child.material = logoGradientMaterial2.clone();
           console.log("Applied yellow-orange gradient to mesh", meshIndex);
         }
-        
+
         meshIndex++;
       }
     });
-    
+
     scene.add(gltf.scene);
     interpolateStates(props.progress);
   });
 
-  // Initialize with the first state
   interpolateStates(props.progress);
-  
-  // Start animation
+
   animate();
 };
 
-// Cleanup function
 const cleanup = () => {
   if (animationId) {
     cancelAnimationFrame(animationId);
