@@ -188,21 +188,21 @@ const triggerAnimations = async () => {
       </StackLayout>
             
       <GridLayout ref="stats" class="mt-8" columns="*, *, *" rows="*">
-        <SquircleContentView class="info-card m-1" row="0" col="0">
+        <SquircleContentView cornerSmoothing="10" squircleBorderWidth="1" squircleBorderColor="rgba(30,41,59,0.3)" class="info-card m-1" row="0" col="0">
           <StackLayout class="text-center p-4">
             <Label class="text-2xl font-bold text-center mb-1 text-[#41d1ff]">3s</Label>
             <Label class="text-xs text-gray-400 text-center" textWrap="true">Dev Server Start</Label>
           </StackLayout>
         </SquircleContentView>
 
-        <SquircleContentView class="info-card m-1" row="0" col="1">
+        <SquircleContentView cornerSmoothing="10" squircleBorderWidth="1" squircleBorderColor="rgba(30,41,59,0.3)" class="info-card m-1" row="0" col="1">
           <StackLayout class="text-center p-4">
             <Label class="text-2xl font-bold text-center mb-1 text-[#807ff0]">100%</Label>
             <Label class="text-xs text-gray-400 text-center" textWrap="true">Native Performance</Label>
           </StackLayout>
         </SquircleContentView>
         
-        <SquircleContentView class="info-card m-1" row="0" col="2">
+        <SquircleContentView cornerSmoothing="10" squircleBorderWidth="1" squircleBorderColor="rgba(30,41,59,0.3)" class="info-card m-1" row="0" col="2">
           <StackLayout class="text-center p-4">
             <Label class="text-2xl font-bold text-center mb-1 text-[#bd34fe]">∞</Label>
             <Label class="text-xs text-gray-400 text-center" textWrap="true">Possibilities</Label>

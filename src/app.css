@@ -70,6 +70,6 @@ ActionBar {
 
 .info-card {
   background-color: rgba(30, 41, 59, 0.3); /* bg-slate-800/30 */
-  border-width: 1px; /* border-1 */
-  border-color: rgba(255, 255, 255, 0.2); /* border-white border-opacity-20 */
+  /* border-width: 1px; border-1 */
+  /* border-color: rgba(255, 255, 255, 0.2); border-white border-opacity-20 */
 }
