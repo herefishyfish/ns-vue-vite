@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { ref, watch, nextTick } from 'nativescript-vue';
 import { Animation } from '@nativescript/core';
+import { SquircleContentView } from '../squircle';
 
 const props = defineProps({
   isActive: {
@@ -191,10 +192,12 @@ const frameworkData = [
     <Label ref="subtitle" class="text-lg text-gray-400 text-center mb-10">Works with your favorite framework</Label>
 
     <FlexboxLayout ref="frameworks" class="m-8 p-8 w-full" flexWrap="wrap" justifyContent="center" alignItems="center">
-      <StackLayout 
+      <SquircleContentView
         v-for="framework in frameworkData" 
         :key="framework.name" 
-        class="rounded-2xl p-4 m-2 text-center relative w-24 h-28 bg-white/5 border-2"
+        squircleBorderWidth="1"
+        squircleBorderColor="#ffffff33"
+        class="rounded-2xl p-4 m-2 text-center relative w-24 h-28 bg-white/5"
         :class="framework.class"
       >
         <StackLayout class="relative z-10">
@@ -204,7 +207,7 @@ const frameworkData = [
           />
           <Label class="text-sm font-bold text-white text-center" :text="framework.name" />
         </StackLayout>
-      </StackLayout>
+      </SquircleContentView>
     </FlexboxLayout>
 
     <StackLayout ref="additionalFrameworks" class="mt-8">
@@ -219,52 +222,42 @@ const frameworkData = [
 <style scoped>
 /* Framework-specific border colors using Tailwind custom classes */
 .vue {
-  border-color: #41b883;
   background-color: rgba(65, 184, 131, 0.1);
 }
 
 .react {
-  border-color: #61dafb;
   background-color: rgba(97, 218, 251, 0.1);
 }
 
 .solid {
-  border-color: #2c4f7c;
   background-color: rgba(44, 79, 124, 0.1);
 }
 
 .svelte {
-  border-color: #ff3e00;
   background-color: rgba(255, 62, 0, 0.1);
 }
 
 .angular {
-  border-color: #dd0031;
   background-color: rgba(221, 0, 49, 0.1);
 }
 
 .vue-logo {
-  color: #41b883;
   background-color: rgba(65, 184, 131, 0.2);
 }
 
 .react-logo {
-  color: #61dafb;
   background-color: rgba(97, 218, 251, 0.2);
 }
 
 .solid-logo {
-  color: #2c4f7c;
   background-color: rgba(44, 79, 124, 0.2);
 }
 
 .svelte-logo {
-  color: #ff3e00;
   background-color: rgba(255, 62, 0, 0.2);
 }
 
 .angular-logo {
-  color: #dd0031;
   background-color: rgba(221, 0, 49, 0.2);
 }
 </style>

@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { ref, watch, nextTick } from 'nativescript-vue';
 import { Animation } from '@nativescript/core';
+import { SquircleContentView } from '../squircle';
 
 // Slide 5: Get Started with NativeScript + Vite
 const props = defineProps({
@@ -187,20 +188,26 @@ const triggerAnimations = async () => {
       </StackLayout>
             
       <GridLayout ref="stats" class="mt-8" columns="*, *, *" rows="*">
-        <StackLayout class="text-center p-4 m-1 info-card rounded-lg" row="0" col="0">
-          <Label class="text-2xl font-bold text-center mb-1 text-[#41d1ff]">3s</Label>
-          <Label class="text-xs text-gray-400 text-center" textWrap="true">Dev Server Start</Label>
-        </StackLayout>
+        <SquircleContentView class="info-card m-1" row="0" col="0">
+          <StackLayout class="text-center p-4">
+            <Label class="text-2xl font-bold text-center mb-1 text-[#41d1ff]">3s</Label>
+            <Label class="text-xs text-gray-400 text-center" textWrap="true">Dev Server Start</Label>
+          </StackLayout>
+        </SquircleContentView>
+
+        <SquircleContentView class="info-card m-1" row="0" col="1">
+          <StackLayout class="text-center p-4">
+            <Label class="text-2xl font-bold text-center mb-1 text-[#807ff0]">100%</Label>
+            <Label class="text-xs text-gray-400 text-center" textWrap="true">Native Performance</Label>
+          </StackLayout>
+        </SquircleContentView>
         
-        <StackLayout class="text-center p-4 m-1 info-card rounded-lg" row="0" col="1">
-          <Label class="text-2xl font-bold text-center mb-1 text-[#807ff0]">100%</Label>
-          <Label class="text-xs text-gray-400 text-center" textWrap="true">Native Performance</Label>
-        </StackLayout>
-        
-        <StackLayout class="text-center p-4 m-1 info-card rounded-lg" row="0" col="2">
-          <Label class="text-2xl font-bold text-center mb-1 text-[#bd34fe]">∞</Label>
-          <Label class="text-xs text-gray-400 text-center" textWrap="true">Possibilities</Label>
-        </StackLayout>
+        <SquircleContentView class="info-card m-1" row="0" col="2">
+          <StackLayout class="text-center p-4">
+            <Label class="text-2xl font-bold text-center mb-1 text-[#bd34fe]">∞</Label>
+            <Label class="text-xs text-gray-400 text-center" textWrap="true">Possibilities</Label>
+          </StackLayout>
+        </SquircleContentView>
       </GridLayout>
 
     </StackLayout>
