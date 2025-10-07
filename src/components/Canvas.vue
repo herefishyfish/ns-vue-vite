@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { Canvas } from "@nativescript/canvas";
-import { LoadEventData } from "@nativescript/core";
+import { LoadEventData, Screen } from "@nativescript/core";
 import { registerElement, watch } from "nativescript-vue";
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
@@ -494,8 +494,8 @@ const animate = () => {
 const onReady = (args: LoadEventData) => {
   canvas = args.object as Canvas;
 
-  canvas.width = canvas.clientWidth * 2.625;
-  canvas.height = canvas.clientHeight * 2.625;
+  canvas.width = canvas.clientWidth * Screen.mainScreen.scale;
+  canvas.height = canvas.clientHeight * Screen.mainScreen.scale;
 
   // Setup WebGL context for 3D
   const webglCtx = canvas.getContext("webgl2");

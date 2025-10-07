@@ -5,7 +5,7 @@ export function applyGradient(label: Label, colorCodes: string[]) {
 
   const nsString = NSString.stringWithString(text);
   const font = label.ios.font;
-  const textWidth = nsString.sizeWithFont(font).width + 5;
+  const textWidth = nsString.sizeWithFont(font).width + 400;
   const size = CGSizeMake(textWidth, 1);
 
   UIGraphicsBeginImageContextWithOptions(size, false, 0.0);
