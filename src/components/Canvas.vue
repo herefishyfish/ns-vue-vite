@@ -230,7 +230,7 @@ const states = [
     baseColor2: "#16213e",
     accentColor1: "rgba(65, 209, 255, 1)",
     accentColor2: "rgba(189, 52, 254, 1)",
-    pulseIntensity: 0.08, // Increased from 0.01
+    pulseIntensity: 0.1, // Increased from 0.01
     radialPositions: { r1: { x: 0.15, y: 0.2 }, r2: { x: 0.85, y: 0.8 } }, // More spread out
   },
   {
@@ -261,14 +261,14 @@ const states = [
   },
   {
     // 3D Model state
-    rotation: { x: Math.PI * 2 + 0.4, y: -Math.PI * 4, z: 0 },
+    rotation: { x: Math.PI * 2 + 0.4, y: 0, z: 0 },
     scale: 8,
     position: { x: 0, y: 1.2, z: 0 },
     // Gradient state
     baseColor1: "#434343",
     baseColor2: "#000000",
-    accentColor1: "rgba(255, 255, 255, 0.2)",
-    accentColor2: "rgba(128, 128, 128, 0.2)",
+    accentColor1: "rgba(128, 128, 128, 0.2)",
+    accentColor2: "rgba(188, 188, 188, 0.05)",
     pulseIntensity: 0.5, // Increased from 0.3
     radialPositions: { r1: { x: 0.3, y: 0.7 }, r2: { x: 0.7, y: 0.3 } }, // Better contrast positioning
   },

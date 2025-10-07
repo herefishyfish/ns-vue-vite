@@ -11,6 +11,12 @@ ActionBar {
   line-height: 0;
 }
 
-.text-base, .text-sm, .text-lg, .text-xl, .text-2xl, .text-3xl {
+.text-base, .text-xs, .text-sm, .text-lg, .text-xl, .text-2xl, .text-3xl, .text-4xl {
   line-height: 0;
+}
+
+.info-card {
+  background-color: rgba(30, 41, 59, 0.3); /* bg-slate-800/30 */
+  border-width: 1px; /* border-1 */
+  border-color: rgba(255, 255, 255, 0.2); /* border-white border-opacity-20 */
 }
