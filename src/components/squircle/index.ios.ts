@@ -102,9 +102,7 @@ class MaskedSquircleView extends UIView {
 
       const n = Math.max(0.01, this.exponent);
 
-      const expansion = 3;
-      const maskPath = this.makeExponentPath(w + expansion, h + expansion, n);
-      maskPath.applyTransform(CGAffineTransformMakeTranslation(-expansion/2, -expansion/2));
+      const maskPath = this.makeExponentPath(w, h, n);
 
       let borderPath: UIBezierPath;
       if (this.borderWidth > 0) {
@@ -112,7 +110,7 @@ class MaskedSquircleView extends UIView {
         borderPath = this.makeExponentPath(w - inset * 2, h - inset * 2, n);
         borderPath.applyTransform(CGAffineTransformMakeTranslation(inset, inset));
       } else {
-        borderPath = this.makeExponentPath(w, h, n);
+        borderPath = maskPath;
       }
 
       CATransaction.begin();
