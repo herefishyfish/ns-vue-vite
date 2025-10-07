@@ -190,7 +190,7 @@ const frameworkData = [
     <Label ref="title" class="text-4xl font-bold text-white text-center mb-2.5" textWrap="true">Framework Agnostic</Label>
     <Label ref="subtitle" class="text-lg text-gray-400 text-center mb-10">Works with your favorite framework</Label>
 
-    <FlexboxLayout ref="frameworks" class="my-8 w-full" flexWrap="wrap" justifyContent="center" alignItems="center">
+    <FlexboxLayout ref="frameworks" class="m-8 p-8 w-full" flexWrap="wrap" justifyContent="center" alignItems="center">
       <StackLayout 
         v-for="framework in frameworkData" 
         :key="framework.name" 

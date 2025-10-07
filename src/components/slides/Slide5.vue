@@ -45,9 +45,6 @@ const setInitialState = () => {
     if (terminal.value) {
       const element = terminal.value.nativeView;
       element.opacity = 0;
-      element.translateY = 40;
-      element.scaleX = 0.9;
-      element.scaleY = 0.9;
     }
     
     if (stats.value) {
@@ -86,7 +83,7 @@ watch([title, subtitle, terminal, stats], () => {
 const triggerAnimations = async () => {
   console.log('Triggering Slide 5 animations');
   
-  // await nextTick();
+  await nextTick();
   
   // Animate title
   if (title.value) {
@@ -166,14 +163,12 @@ const triggerAnimations = async () => {
       <Label ref="title" class="text-3xl font-bold text-white text-center mb-2.5">Start Building Today</Label>
       <Label ref="subtitle" class="text-base text-gray-400 text-center mb-8">Create your first NativeScript app with Vite</Label>
       
-      <StackLayout ref="terminal" class="bg-slate-900 rounded-lg my-5 border border-slate-600">
-        <GridLayout class="bg-slate-800 p-4 rounded-t-lg" columns="auto, *, auto" rows="*">
-          <StackLayout class="mr-2.5" col="0" orientation="horizontal">
-            <Label class="text-red-400 mr-1 text-xs">●</Label>
-            <Label class="text-yellow-400 mr-1 text-xs">●</Label>
-            <Label class="text-green-400 text-xs">●</Label>
-          </StackLayout>
-          <Label class="text-white text-xs text-center" col="1">Terminal</Label>
+      <StackLayout ref="terminal" class="bg-slate-900 rounded-lg border border-slate-600">
+        <GridLayout class="bg-slate-800 p-4 w-full rounded-t-lg" columns="auto, auto, auto, *" rows="*">
+          <Label colSpan="4" class="text-white text-xs text-center">Terminal</Label>
+          <Label col="1" class="text-red-400 mr-1 text-xs">●</Label>
+          <Label col="2" class="text-yellow-400 mr-1 text-xs">●</Label>
+          <Label col="3" class="text-green-400 text-xs">●</Label>
         </GridLayout>
         
         <StackLayout class="p-4">
@@ -213,5 +208,4 @@ const triggerAnimations = async () => {
 </template>
 
 <style scoped>
-/* Tailwind CSS classes are now used instead of custom styles */
 </style>
