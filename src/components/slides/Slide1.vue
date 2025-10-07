@@ -101,8 +101,8 @@ watch(() => props.justActivated, (newValue) => {
 // Set initial state when mounted and auto-trigger animations
 watch([title, subtitle, description, featureHighlights], () => {
   if (!animationsTriggered.value) {
-    setInitialState();
-    autoTriggerAnimations();
+    // setInitialState();
+    // autoTriggerAnimations();
   }
 }, { immediate: true });
 
@@ -181,5 +181,4 @@ const triggerAnimations = async () => {
 </script>
 
 <style scoped>
-/* Custom styles only for non-Tailwind elements */
 </style>

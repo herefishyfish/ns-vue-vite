@@ -171,5 +171,4 @@ const triggerAnimations = async () => {
 </script>
 
 <style scoped>
-/* Tailwind CSS classes are now used instead of custom styles */
 </style>

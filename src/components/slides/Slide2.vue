@@ -188,5 +188,4 @@ const triggerAnimations = async () => {
 </template>
 
 <style scoped>
-/* Custom styles only for non-Tailwind elements */
 </style>
