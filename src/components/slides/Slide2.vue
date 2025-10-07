@@ -159,7 +159,7 @@ const triggerAnimations = async () => {
 
 <template>
   <StackLayout class="p-5 items-center align-middle justify-center">
-    <Label ref="title" class="text-3xl font-bold text-white text-center mb-2">Development Revolution</Label>
+    <Label ref="title" class="text-3xl font-bold text-white text-center mb-2" textWrap="true">Development Revolution</Label>
     <Label ref="subtitle" class="text-xl text-gray-400 text-center mb-8">Native Mobile Meets Web Speed</Label>
     
     <StackLayout ref="comparison" class="my-8 w-full items-center">

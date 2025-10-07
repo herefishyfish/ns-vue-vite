@@ -1,35 +1,35 @@
 <template>
-  <ScrollView class="slide-container">
+  <ScrollView class="p-5">
     <StackLayout verticalAlignment="center">
-      <Label ref="mainTitle" class="main-title">Game-Changing Features</Label>
-      <Label ref="description" class="description" textWrap="true">
+      <Label ref="mainTitle" class="text-3xl font-bold text-white text-center mb-4">Game-Changing Features</Label>
+      <Label ref="description" class="text-base text-gray-300 text-center mb-8 leading-relaxed" textWrap="true">
         NativeScript's Vite integration brings web development speeds to native mobile app creation.
       </Label>
       
-      <GridLayout class="feature-grid" columns="*, *" rows="*, *">
-        <StackLayout ref="featureCard1" class="feature-card" row="0" col="0">
-          <Label class="icon">🔥</Label>
-          <Label class="feature-title" textWrap="true">Instant HMR</Label>
-          <Label class="feature-description" textWrap="true">See native app changes instantly without rebuilds</Label>
+      <GridLayout class="mt-5" columns="*, *" rows="*, *">
+        <StackLayout ref="featureCard1" class="info-card rounded-xl p-5 m-2.5 text-center" row="0" col="0">
+          <Label class="text-3xl text-center mb-2.5">🔥</Label>
+          <Label class="text-base font-bold text-white text-center mb-2" textWrap="true">Instant HMR</Label>
+          <Label class="text-xs text-gray-400 text-center leading-snug" textWrap="true">See native app changes instantly without rebuilds</Label>
         </StackLayout>
         
-        <StackLayout ref="featureCard2" class="feature-card" row="0" col="1">
-          <Label class="icon">📱</Label>
-          <Label class="feature-title" textWrap="true">Native Performance</Label>
-          <Label class="feature-description" textWrap="true">True native apps with web tooling speed</Label>
+        <StackLayout ref="featureCard2" class="info-card rounded-xl p-5 m-2.5 text-center" row="0" col="1">
+          <Label class="text-3xl text-center mb-2.5">📱</Label>
+          <Label class="text-base font-bold text-white text-center mb-2" textWrap="true">Native Performance</Label>
+          <Label class="text-xs text-gray-400 text-center leading-snug" textWrap="true">True native apps with web tooling speed</Label>
         </StackLayout>
         
-        <StackLayout ref="featureCard3" class="feature-card" row="1" col="0">
+        <StackLayout ref="featureCard3" class="info-card rounded-xl p-5 m-2.5 text-center" row="1" col="0">
           <BlurView blurAmount="10" />
-          <Label class="icon">🚀</Label>
-          <Label class="feature-title" textWrap="true">Dev Experience</Label>
-          <Label class="feature-description" textWrap="true">Web dev workflow for mobile development</Label>
+          <Label class="text-3xl text-center mb-2.5">🚀</Label>
+          <Label class="text-base font-bold text-white text-center mb-2" textWrap="true">Dev Experience</Label>
+          <Label class="text-xs text-gray-400 text-center leading-snug" textWrap="true">Web dev workflow for mobile development</Label>
         </StackLayout>
         
-        <StackLayout ref="featureCard4" class="feature-card" row="1" col="1">
-          <Label class="icon">⚡</Label>
-          <Label class="feature-title" textWrap="true">Lightning Start</Label>
-          <Label class="feature-description" textWrap="true">Project boots in seconds, not minutes</Label>
+        <StackLayout ref="featureCard4" class="info-card rounded-xl p-5 m-2.5 text-center" row="1" col="1">
+          <Label class="text-3xl text-center mb-2.5">⚡</Label>
+          <Label class="text-base font-bold text-white text-center mb-2" textWrap="true">Lightning Start</Label>
+          <Label class="text-xs text-gray-400 text-center leading-snug" textWrap="true">Project boots in seconds, not minutes</Label>
         </StackLayout>
       </GridLayout>
     </StackLayout>
@@ -171,56 +171,5 @@ const triggerAnimations = async () => {
 </script>
 
 <style scoped>
-.slide-container {
-  padding: 20;
-}
-
-.main-title {
-  font-size: 32;
-  font-weight: bold;
-  color: #ffffff;
-  text-align: center;
-  margin-bottom: 15;
-}
-
-.description {
-  font-size: 16;
-  color: #d0d0d0;
-  text-align: center;
-  margin-bottom: 30;
-  line-height: 1.5;
-}
-
-.feature-grid {
-  margin-top: 20;
-}
-
-.feature-card {
-  background-color: #2a2a3e56;
-  border-radius: 12;
-  padding: 20;
-  margin: 10;
-  text-align: center;
-}
-
-.icon {
-  font-size: 32;
-  text-align: center;
-  margin-bottom: 10;
-}
-
-.feature-title {
-  font-size: 16;
-  font-weight: bold;
-  color: #ffffff;
-  text-align: center;
-  margin-bottom: 8;
-}
-
-.feature-description {
-  font-size: 12;
-  color: #a0a0a0;
-  text-align: center;
-  line-height: 1.4;
-}
+/* Tailwind CSS classes are now used instead of custom styles */
 </style>

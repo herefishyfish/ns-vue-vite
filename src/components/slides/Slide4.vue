@@ -186,30 +186,30 @@ const frameworkData = [
 </script>
 
 <template>
-  <StackLayout class="slide-container" verticalAlignment="center">
-    <Label ref="title" class="title" textWrap="true">Framework Agnostic</Label>
-    <Label ref="subtitle" class="subtitle">Works with your favorite framework</Label>
+  <StackLayout class="p-5" verticalAlignment="center">
+    <Label ref="title" class="text-4xl font-bold text-white text-center mb-2.5" textWrap="true">Framework Agnostic</Label>
+    <Label ref="subtitle" class="text-lg text-gray-400 text-center mb-10">Works with your favorite framework</Label>
 
-    <FlexboxLayout ref="frameworks" class="frameworks" flexWrap="wrap" justifyContent="center" alignItems="center">
+    <FlexboxLayout ref="frameworks" class="my-8 w-full" flexWrap="wrap" justifyContent="center" alignItems="center">
       <StackLayout 
         v-for="framework in frameworkData" 
         :key="framework.name" 
-        class="framework-card" 
+        class="rounded-2xl p-4 m-2 text-center relative w-24 h-28 bg-white/5 border-2"
         :class="framework.class"
       >
-        <StackLayout class="framework-content">
+        <StackLayout class="relative z-10">
           <Image
             :src="framework.logo"
-            :class="['logo-text', framework.logoClass]"
+            :class="['text-3xl font-bold text-center w-12 h-12 rounded-full leading-12 mb-2', framework.logoClass]"
           />
-          <Label class="framework-name" :text="framework.name" />
+          <Label class="text-sm font-bold text-white text-center" :text="framework.name" />
         </StackLayout>
       </StackLayout>
     </FlexboxLayout>
 
-    <StackLayout ref="additionalFrameworks" class="additional-frameworks">
+    <StackLayout ref="additionalFrameworks" class="mt-8">
       <Label
-        class="more-frameworks"
+        class="text-sm text-center italic text-gray-300"
         textWrap="true"
       >+ Angular, Svelte, Vanilla JS, and more!</Label>
     </StackLayout>
@@ -217,92 +217,30 @@ const frameworkData = [
 </template>
 
 <style scoped>
-.slide-container {
-  padding: 20;
-}
-
-.title {
-  font-size: 36;
-  font-weight: bold;
-  color: #ffffff;
-  text-align: center;
-  margin-bottom: 10;
-}
-
-.subtitle {
-  font-size: 18;
-  color: #a0a0a0;
-  text-align: center;
-  margin-bottom: 40;
-}
-
-.frameworks {
-  margin: 30 0;
-  width: 100%;
-}
-
-.framework-card {
-  border-radius: 16;
-  padding: 20 15;
-  margin: 8;
-  text-align: center;
-  position: relative;
-  width: 90;
-  height: 100;
-  background-color: rgba(255, 255, 255, 0.05);
-  border-width: 2;
-  border-color: rgba(255, 255, 255, 0.1);
-}
-
-.framework-card.vue {
+/* Framework-specific border colors using Tailwind custom classes */
+.vue {
   border-color: #41b883;
   background-color: rgba(65, 184, 131, 0.1);
 }
 
-.framework-card.react {
+.react {
   border-color: #61dafb;
   background-color: rgba(97, 218, 251, 0.1);
 }
 
-.framework-card.solid {
+.solid {
   border-color: #2c4f7c;
   background-color: rgba(44, 79, 124, 0.1);
 }
 
-.framework-card.svelte {
+.svelte {
   border-color: #ff3e00;
   background-color: rgba(255, 62, 0, 0.1);
 }
 
-.framework-card.angular {
+.angular {
   border-color: #dd0031;
   background-color: rgba(221, 0, 49, 0.1);
-}
-
-.blur-background {
-  height: 100%;
-  width: 100%;
-}
-
-.framework-content {
-  position: relative;
-  z-index: 1;
-}
-
-.framework-icon {
-  margin-bottom: 15;
-  text-align: center;
-}
-
-.logo-text {
-  font-size: 32;
-  font-weight: bold;
-  text-align: center;
-  width: 50;
-  height: 50;
-  border-radius: 25;
-  line-height: 50;
-  margin-bottom: 8;
 }
 
 .vue-logo {
@@ -328,22 +266,5 @@ const frameworkData = [
 .angular-logo {
   color: #dd0031;
   background-color: rgba(221, 0, 49, 0.2);
-}
-
-.framework-name {
-  font-size: 14;
-  font-weight: bold;
-  color: #ffffff;
-  text-align: center;
-}
-
-.additional-frameworks {
-  margin-top: 30;
-}
-
-.more-frameworks {
-  font-size: 14;
-  text-align: center;
-  font-style: italic;
 }
 </style>
