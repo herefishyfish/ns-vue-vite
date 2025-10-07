@@ -7,30 +7,37 @@
       </Label>
       
       <GridLayout class="mt-5" columns="*, *" rows="*, *">
-        <StackLayout ref="featureCard1" class="info-card rounded-xl p-5 m-2.5 text-center" row="0" col="0">
-          <Label class="text-3xl text-center mb-2.5">🔥</Label>
-          <Label class="text-base font-bold text-white text-center mb-2" textWrap="true">Instant HMR</Label>
-          <Label class="text-xs text-gray-400 text-center leading-snug" textWrap="true">See native app changes instantly without rebuilds</Label>
-        </StackLayout>
+        <SquircleContentView ref="featureCard1" class="info-card p-5 m-2.5 text-center" row="0" col="0" squircleBorderWidth="2" squircleBorderColor="#41d1ff">
+          <StackLayout class="text-center">
+            <Label class="text-3xl text-center mb-2.5">🔥</Label>
+            <Label class="text-base font-bold text-white text-center mb-2" textWrap="true">Instant HMR</Label>
+            <Label class="text-xs text-gray-400 text-center leading-snug" textWrap="true">See native app changes instantly without rebuilds</Label>
+          </StackLayout>
+        </SquircleContentView>
         
-        <StackLayout ref="featureCard2" class="info-card rounded-xl p-5 m-2.5 text-center" row="0" col="1">
-          <Label class="text-3xl text-center mb-2.5">📱</Label>
-          <Label class="text-base font-bold text-white text-center mb-2" textWrap="true">Native Performance</Label>
-          <Label class="text-xs text-gray-400 text-center leading-snug" textWrap="true">True native apps with web tooling speed</Label>
-        </StackLayout>
-        
-        <StackLayout ref="featureCard3" class="info-card rounded-xl p-5 m-2.5 text-center" row="1" col="0">
-          <BlurView blurAmount="10" />
-          <Label class="text-3xl text-center mb-2.5">🚀</Label>
-          <Label class="text-base font-bold text-white text-center mb-2" textWrap="true">Dev Experience</Label>
-          <Label class="text-xs text-gray-400 text-center leading-snug" textWrap="true">Web dev workflow for mobile development</Label>
-        </StackLayout>
-        
-        <StackLayout ref="featureCard4" class="info-card rounded-xl p-5 m-2.5 text-center" row="1" col="1">
-          <Label class="text-3xl text-center mb-2.5">⚡</Label>
-          <Label class="text-base font-bold text-white text-center mb-2" textWrap="true">Lightning Start</Label>
-          <Label class="text-xs text-gray-400 text-center leading-snug" textWrap="true">Project boots in seconds, not minutes</Label>
-        </StackLayout>
+        <SquircleContentView ref="featureCard2" class="info-card p-5 m-2.5 text-center" row="0" col="1" squircleBorderWidth="2" squircleBorderColor="#bd34fe">
+          <StackLayout class="text-center">
+            <Label class="text-3xl text-center mb-2.5">📱</Label>
+            <Label class="text-base font-bold text-white text-center mb-2" textWrap="true">Native Performance</Label>
+            <Label class="text-xs text-gray-400 text-center leading-snug" textWrap="true">True native apps with web tooling speed</Label>
+          </StackLayout>
+        </SquircleContentView>
+
+        <SquircleContentView ref="featureCard3" class="info-card p-5 m-2.5 text-center" row="1" col="0" squircleBorderWidth="2" squircleBorderColor="#10b981">
+          <StackLayout class="text-center">
+            <Label class="text-3xl text-center mb-2.5">🚀</Label>
+            <Label class="text-base font-bold text-white text-center mb-2" textWrap="true">Dev Experience</Label>
+            <Label class="text-xs text-gray-400 text-center leading-snug" textWrap="true">Web dev workflow for mobile development</Label>
+          </StackLayout>
+        </SquircleContentView>
+
+        <SquircleContentView ref="featureCard4" class="info-card p-5 m-2.5 text-center" row="1" col="1" squircleBorderWidth="2" squircleBorderColor="#f59e0b">
+          <StackLayout class="text-center">
+            <Label class="text-3xl text-center mb-2.5">⚡</Label>
+            <Label class="text-base font-bold text-white text-center mb-2" textWrap="true">Lightning Start</Label>
+            <Label class="text-xs text-gray-400 text-center leading-snug" textWrap="true">Project boots in seconds, not minutes</Label>
+          </StackLayout>
+        </SquircleContentView>
       </GridLayout>
     </StackLayout>
   </ScrollView>
@@ -40,6 +47,7 @@
 import { BlurView } from '@nativescript-community/ui-blurview';
 import { ref, watch, nextTick } from 'nativescript-vue';
 import { Animation } from '@nativescript/core';
+import { SquircleContentView } from '../squircle';
 
 // Slide 3: NativeScript + Vite Features
 const props = defineProps({
