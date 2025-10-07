@@ -7,32 +7,32 @@
       </Label>
       
       <GridLayout class="mt-5" columns="*, *" rows="*, *">
-        <SquircleContentView ref="featureCard1" class="info-card p-5 m-2.5 text-center" row="0" col="0" squircleBorderWidth="2" squircleBorderColor="#41d1ff">
-          <StackLayout class="text-center">
+        <SquircleContentView ref="featureCard1" class="info-card p-10 m-2.5 text-center" row="0" col="0" squircleBorderWidth="2" squircleBorderColor="#41d1ff">
+          <StackLayout class="text-center m-8">
             <Label class="text-3xl text-center mb-2.5">🔥</Label>
             <Label class="text-base font-bold text-white text-center mb-2" textWrap="true">Instant HMR</Label>
             <Label class="text-xs text-gray-400 text-center leading-snug" textWrap="true">See native app changes instantly without rebuilds</Label>
           </StackLayout>
         </SquircleContentView>
         
-        <SquircleContentView ref="featureCard2" class="info-card p-5 m-2.5 text-center" row="0" col="1" squircleBorderWidth="2" squircleBorderColor="#bd34fe">
-          <StackLayout class="text-center">
+        <SquircleContentView ref="featureCard2" class="info-card p-10 m-2.5 text-center" row="0" col="1" squircleBorderWidth="2" squircleBorderColor="#bd34fe">
+          <StackLayout class="text-center m-8">
             <Label class="text-3xl text-center mb-2.5">📱</Label>
             <Label class="text-base font-bold text-white text-center mb-2" textWrap="true">Native Performance</Label>
             <Label class="text-xs text-gray-400 text-center leading-snug" textWrap="true">True native apps with web tooling speed</Label>
           </StackLayout>
         </SquircleContentView>
 
-        <SquircleContentView ref="featureCard3" class="info-card p-5 m-2.5 text-center" row="1" col="0" squircleBorderWidth="2" squircleBorderColor="#10b981">
-          <StackLayout class="text-center">
+        <SquircleContentView ref="featureCard3" class="info-card p-10 m-2.5 text-center" row="1" col="0" squircleBorderWidth="2" squircleBorderColor="#10b981">
+          <StackLayout class="text-center m-8">
             <Label class="text-3xl text-center mb-2.5">🚀</Label>
             <Label class="text-base font-bold text-white text-center mb-2" textWrap="true">Dev Experience</Label>
             <Label class="text-xs text-gray-400 text-center leading-snug" textWrap="true">Web dev workflow for mobile development</Label>
           </StackLayout>
         </SquircleContentView>
 
-        <SquircleContentView ref="featureCard4" class="info-card p-5 m-2.5 text-center" row="1" col="1" squircleBorderWidth="2" squircleBorderColor="#f59e0b">
-          <StackLayout class="text-center">
+        <SquircleContentView ref="featureCard4" class="info-card p-10 m-2.5 text-center" row="1" col="1" squircleBorderWidth="2" squircleBorderColor="#f59e0b">
+          <StackLayout class="text-center m-8">
             <Label class="text-3xl text-center mb-2.5">⚡</Label>
             <Label class="text-base font-bold text-white text-center mb-2" textWrap="true">Lightning Start</Label>
             <Label class="text-xs text-gray-400 text-center leading-snug" textWrap="true">Project boots in seconds, not minutes</Label>
@@ -86,8 +86,8 @@ const setInitialState = () => {
         const element = elementRef.value.nativeView;
         element.opacity = 0;
         element.translateY = 50;
-        element.scaleX = 0.8;
-        element.scaleY = 0.8;
+        // element.scaleX = 0.8;
+        // element.scaleY = 0.8;
       }
     });
   });
@@ -129,7 +129,7 @@ const triggerAnimations = async () => {
       target: titleElement,
       opacity: 1,
       translate: { x: 0, y: 0 },
-      scale: { x: 1, y: 1 },
+      // scale: { x: 1, y: 1 },
       duration: 600,
       curve: "easeOut"
     }]);
@@ -146,7 +146,7 @@ const triggerAnimations = async () => {
         target: descElement,
         opacity: 1,
         translate: { x: 0, y: 0 },
-        scale: { x: 1, y: 1 },
+        // scale: { x: 1, y: 1 },
         duration: 600,
         curve: "easeOut"
       }]);
@@ -166,7 +166,7 @@ const triggerAnimations = async () => {
           target: card,
           opacity: 1,
           translate: { x: 0, y: 0 },
-          scale: { x: 1, y: 1 },
+          // scale: { x: 1, y: 1 },
           duration: 800,
           curve: "easeInOut"
         }]);
