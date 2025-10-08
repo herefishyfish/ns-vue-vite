@@ -35,14 +35,10 @@ const onReady = async (args: LoadEventData) => {
   canvas.ignoreTouchEvents = true;
 
   try {
-    // Initialize the graphics controller
     graphicsController = new GraphicsController();
     
-    // Pass canvas element for both WebGL and WebGPU
     await graphicsController.initialize(canvas, props.useWebGPU);
     
-    
-    // Start the animation with current progress
     graphicsController.startAnimation(props.progress);
     
     console.log(`Graphics controller initialized successfully with ${props.useWebGPU ? 'WebGPU' : 'WebGL'}`);
