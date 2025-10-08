@@ -9,7 +9,6 @@ export class AnimationController {
   private currentState: AnimationState;
   private materialManager: IMaterialManager;
 
-  // Scene objects that need animation
   private viteLogo: THREE.Mesh | null = null;
   private logoGlow: THREE.Mesh | null = null;
   private camera: THREE.Camera | null = null;
@@ -163,6 +162,19 @@ export class AnimationController {
     };
   }
 
+  private parseRgbaColor(rgbaString: string): {r: number, g: number, b: number, a: number} {
+    const match = rgbaString.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*([\d.]+))?\)/);
+    if (match) {
+      return {
+        r: parseInt(match[1]) / 255,
+        g: parseInt(match[2]) / 255,
+        b: parseInt(match[3]) / 255,
+        a: match[4] ? parseFloat(match[4]) : 1
+      };
+    }
+    return { r: 1, g: 1, b: 1, a: 1 };
+  }
+
   updateMaterialUniforms(): void {
     if (this.viteLogo) {
       const verticalOffset = Math.sin(this.currentTime * 0.001) * 0.1;
@@ -170,43 +182,49 @@ export class AnimationController {
       this.viteLogo.position.y = baseY + verticalOffset;
     }
 
-    // Update gradient background material if it exists
-    // const gradientBackgroundMaterial = this.materialManager.getMaterial('gradientBackground');
-    // if (gradientBackgroundMaterial) {
-    //   this.materialManager.updateMaterialUniforms('gradientBackground', {
-    //     time: { value: this.currentTime }
-    //   });
-    // }
+    const currentState = this.getCurrentState();
 
-    const gradientMaterial = this.materialManager.getMaterial('gradient');
-    if (!gradientMaterial) return;
-
-    this.materialManager.updateMaterialUniforms('gradient', {
-      color1: { value: new THREE.Color(parseInt(this.currentState.baseColor1.replace("#", "0x"))) },
-      color2: { value: new THREE.Color(parseInt(this.currentState.baseColor2.replace("#", "0x"))) },
-      time: { value: this.currentTime }
-    });
-
-    const hasComplexUniforms = true;
-
-    if (hasComplexUniforms) {
-      const radialPos1Vector = new THREE.Vector2(this.currentState.radialPositions.r1.x, this.currentState.radialPositions.r1.y);
-      const radialPos2Vector = new THREE.Vector2(this.currentState.radialPositions.r2.x, this.currentState.radialPositions.r2.y);
-      
-      this.materialManager.updateMaterialUniforms('gradient', {
-        pulseIntensity: { value: this.currentState.pulseIntensity },
-        radialPos1: { value: radialPos1Vector },
-        radialPos2: { value: radialPos2Vector },
-      });
+    const gradientTimeUniform = this.materialManager.getMaterial('gradient_timeUniform');
+    if (gradientTimeUniform) {
+      gradientTimeUniform.value = this.currentTime;
     }
 
-    const accentColor1 = parseRgbaColor(this.currentState.accentColor1);
-    const accentColor2 = parseRgbaColor(this.currentState.accentColor2);
+    const baseColor1Uniform = this.materialManager.getMaterial('gradient_baseColor1Uniform');
+    if (baseColor1Uniform && currentState.baseColor1) {
+      baseColor1Uniform.value.set(currentState.baseColor1);
+    }
 
-    this.materialManager.updateMaterialUniforms('gradient', {
-      accentColor1: { value: new THREE.Color(rgbaToHex(accentColor1.r, accentColor1.g, accentColor1.b)) },
-      accentColor2: { value: new THREE.Color(rgbaToHex(accentColor2.r, accentColor2.g, accentColor2.b)) },
-    });
+    const baseColor2Uniform = this.materialManager.getMaterial('gradient_baseColor2Uniform');
+    if (baseColor2Uniform && currentState.baseColor2) {
+      baseColor2Uniform.value.set(currentState.baseColor2);
+    }
+
+    const accentColor1Uniform = this.materialManager.getMaterial('gradient_accentColor1Uniform');
+    if (accentColor1Uniform && currentState.accentColor1) {
+      const rgba1 = this.parseRgbaColor(currentState.accentColor1);
+      accentColor1Uniform.value.setRGB(rgba1.r, rgba1.g, rgba1.b);
+    }
+
+    const accentColor2Uniform = this.materialManager.getMaterial('gradient_accentColor2Uniform');
+    if (accentColor2Uniform && currentState.accentColor2) {
+      const rgba2 = this.parseRgbaColor(currentState.accentColor2);
+      accentColor2Uniform.value.setRGB(rgba2.r, rgba2.g, rgba2.b);
+    }
+
+    const pulseIntensityUniform = this.materialManager.getMaterial('gradient_pulseIntensityUniform');
+    if (pulseIntensityUniform && currentState.pulseIntensity !== undefined) {
+      pulseIntensityUniform.value = currentState.pulseIntensity;
+    }
+
+    const radial1PosUniform = this.materialManager.getMaterial('gradient_radial1PosUniform');
+    if (radial1PosUniform && currentState.radialPositions?.r1) {
+      radial1PosUniform.value.set(currentState.radialPositions.r1.x, currentState.radialPositions.r1.y);
+    }
+
+    const radial2PosUniform = this.materialManager.getMaterial('gradient_radial2PosUniform');
+    if (radial2PosUniform && currentState.radialPositions?.r2) {
+      radial2PosUniform.value.set(currentState.radialPositions.r2.x, currentState.radialPositions.r2.y);
+    }
 
     const logoGradientMaterial1 = this.materialManager.getMaterial('logoGradient1');
     if (logoGradientMaterial1) {

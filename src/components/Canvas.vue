@@ -21,7 +21,6 @@ const props = defineProps({
 watch(
   () => props.progress,
   (newValue) => {
-    console.log(`Canvas: Progress changed to ${newValue}`);
     if (graphicsController) {
       graphicsController.updateProgress(newValue);
     }
