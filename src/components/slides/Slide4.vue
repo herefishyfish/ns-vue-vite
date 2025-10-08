@@ -1,7 +1,8 @@
 <script lang="ts" setup>
 import { ref, watch, nextTick } from 'nativescript-vue';
-import { Animation } from '@nativescript/core';
+import { Animation, StackLayout } from '@nativescript/core';
 import { SquircleContentView } from '../squircle';
+import { SVGView } from '@nativescript-community/ui-svg';
 
 const props = defineProps({
   isActive: {
@@ -155,34 +156,34 @@ const triggerAnimations = async () => {
 const frameworkData = [
   {
     name: "Vue.js",
-    logo: "https://icon2.cleanpng.com/20180718/aoj/kisspng-vue-js-javascript-library-angularjs-developer-5b4f2afa2ace52.9405904515319150021753.jpg",
+    logo: "~/assets/framework-icons/vue.svg",
     logoClass: "vue-logo",
     class: "vue",
   },
   {
-    name: "React",
-    logo: "⚛️",
-    logoClass: "react-logo",
-    class: "react",
-  },
-  {
-    name: "Solid",
-    logo: "🟨",
-    logoClass: "solid-logo",
-    class: "solid",
+    name: "Angular",
+    logo: "~/assets/framework-icons/angular.svg",
+    logoClass: "angular-logo",
+    class: "angular",
   },
   {
     name: "Svelte",
-    logo: "🟥",
+    logo: "~/assets/framework-icons/svelte.svg",
     logoClass: "svelte-logo",
     class: "svelte",
   },
   {
-    name: "Angular",
-    logo: "https://icon2.cleanpng.com/20180506/hlq/kisspng-angularjs-ionic-5aef7b9232dad3.3268841315256441782083.jpg",
-    logoClass: "angular-logo",
-    class: "angular",
-  }
+    name: "Solid",
+    logo: "~/assets/framework-icons/solid.svg",
+    logoClass: "solid-logo",
+    class: "solid",
+  },
+  {
+    name: "React",
+    logo: "~/assets/framework-icons/react.svg",
+    logoClass: "react-logo",
+    class: "react",
+  },
 ];
 </script>
 
@@ -201,10 +202,13 @@ const frameworkData = [
         :class="framework.class"
       >
         <StackLayout class="relative z-10">
-          <Image
-            :src="framework.logo"
-            :class="['text-3xl font-bold text-center w-12 h-12 rounded-full leading-12 mb-2', framework.logoClass]"
-          />
+          <StackLayout :class="['mb-2 p-2 rounded-full', framework.logoClass]">
+            <SVGView
+              :src="framework.logo"
+              :class="['w-8 h-8']"
+              stretch="aspectFit"
+            />
+          </StackLayout>
           <Label class="text-sm font-bold text-white text-center" :text="framework.name" />
         </StackLayout>
       </SquircleContentView>
@@ -214,7 +218,7 @@ const frameworkData = [
       <Label
         class="text-sm text-center italic text-gray-300"
         textWrap="true"
-      >+ Angular, Svelte, Vanilla JS, and more!</Label>
+      >+ TypeScript, Vanilla JS, and more!</Label>
     </StackLayout>
   </StackLayout>
 </template>
@@ -222,42 +226,42 @@ const frameworkData = [
 <style scoped>
 /* Framework-specific border colors using Tailwind custom classes */
 .vue {
-  background-color: rgba(65, 184, 131, 0.1);
+  background-color: rgba(65, 184, 131, 0.4);
 }
 
 .react {
-  background-color: rgba(97, 218, 251, 0.1);
+  background-color: rgba(97, 218, 251, 0.4);
 }
 
 .solid {
-  background-color: rgba(44, 79, 124, 0.1);
+  background-color: rgba(44, 79, 124, 0.4);
 }
 
 .svelte {
-  background-color: rgba(255, 62, 0, 0.1);
+  background-color: rgba(255, 62, 0, 0.4);
 }
 
 .angular {
-  background-color: rgba(221, 0, 49, 0.1);
+  background-color: rgba(221, 0, 49, 0.4);
 }
 
 .vue-logo {
-  background-color: rgba(65, 184, 131, 0.2);
+  background-color: rgba(37, 37, 37, 0.2);
 }
 
 .react-logo {
-  background-color: rgba(97, 218, 251, 0.2);
+  background-color: rgba(37, 37, 37, 0.2);
 }
 
 .solid-logo {
-  background-color: rgba(44, 79, 124, 0.2);
+  background-color: rgba(37, 37, 37, 0.2);
 }
 
 .svelte-logo {
-  background-color: rgba(255, 62, 0, 0.2);
+  background-color: rgba(71, 71, 71, 0.2);
 }
 
 .angular-logo {
-  background-color: rgba(221, 0, 49, 0.2);
+  background-color: rgba(26, 26, 26, 0.2);
 }
 </style>
