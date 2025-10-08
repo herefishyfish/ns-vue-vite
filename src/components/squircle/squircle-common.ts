@@ -33,7 +33,7 @@ export function superellipsePoints(
 }
 
 export abstract class SquircleContentViewBase extends ContentView {
-  protected _n = 4;
+  protected _n = 8;
   protected _squircleBorderWidth = 0;
   protected _squircleBorderColor = '#000000';
 
