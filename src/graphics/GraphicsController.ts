@@ -41,7 +41,7 @@ export class GraphicsController {
       const logoGlow = this.sceneManager.getLogoGlow();
       const camera = this.sceneManager.getCamera();
 
-      if (viteLogo && logoGlow && camera) {
+      if (viteLogo && camera) {
         this.animationController.setSceneObjects(viteLogo, logoGlow, camera);
       }
 

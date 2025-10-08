@@ -28,7 +28,7 @@ export class SceneManager {
 
     this.setupLighting();
 
-    this.setupGlowEffect();
+    // this.setupGlowEffect();
 
     await this.loadViteLogo();
   }

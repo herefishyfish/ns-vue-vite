@@ -18,7 +18,7 @@ export class AnimationController {
     this.currentState = animationStates[0];
   }
 
-  setSceneObjects(viteLogo: THREE.Mesh, logoGlow: THREE.Mesh, camera: THREE.Camera): void {
+  setSceneObjects(viteLogo: THREE.Mesh, logoGlow: THREE.Mesh | null, camera: THREE.Camera): void {
     this.viteLogo = viteLogo;
     this.logoGlow = logoGlow;
     this.camera = camera;
